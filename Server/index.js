@@ -7,8 +7,11 @@ import passport from 'passport';
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
  // Import should match the filename*/
 import Userdb from './model/userSchema.js';
-const clientid = '402500723085-n0c7rl7g4tdlp09gh943iohu7p1nokc9.apps.googleusercontent.com'
-const clientsecret = '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'
+
+const config = {
+    clientid: config.CLIENT_ID,
+    clientsecret: config.CLIENT_SECRET
+}
 
 const app = express();
 
@@ -70,8 +73,8 @@ app.use(passport.session());
 passport.use(
     new GoogleStrategy(
         {
-            clientID: clientid,
-            clientSecret: clientsecret,
+            clientID: config.clientid,
+            clientSecret: config.clientsecret,
             callbackURL: "/auth/google/callback",
             scope: ["profile", "email"]
         },
