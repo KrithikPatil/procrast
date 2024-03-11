@@ -1,0 +1,135 @@
+:root {
+	--cards: 4;
+	--cardHeight: 87vh;
+	--cardTopPadding: 1.5em;
+	--cardMargin: 4vw;
+}
+
+.cont-1 {
+	width: 90%;
+	margin: 0 auto;
+}
+.TeamI{
+	background: linear-gradient(rgb(255, 254, 254),rgb(245, 111, 111),rgb(255, 254, 254));
+}
+.Feat-heading{
+	text-align: center;
+	justify-content: center;
+	
+}
+.Feat-heading h1{
+	font-size: 150px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	color:#f17777;
+
+}
+
+.Feat-heading p{
+	
+	font-size: 25px;
+	color:chocolate;
+}
+#Fcards {
+	list-style: none;
+	padding-left: 0;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(var(--cards), var());
+	gap: var();
+	padding-bottom: calc(var(--cards) * var(--cardTopPadding));
+	margin-bottom: var(--cardMargin);
+}
+
+#Fcard1 {
+	--index: 1;
+}
+#Fcard2 {
+	--index: 2;
+}
+#Fcard3 {
+	--index: 3;
+}
+#Fcard4 {
+	--index: 4;
+}
+
+.Fcard {
+	position: sticky;
+	top: 0;
+	padding-top: calc(var(--index) * var(--cardTopPadding));
+}
+
+#Fcard1 .Fc-body {
+	background-color: #ffffff;
+
+}
+
+#Fcard1 h2{
+	color: #f16161;
+	transform: translateX(-160px);
+}
+#Fcard2 .Fc-body {
+	/* background-color: #7EC4CF; */
+	background-color: #f17777;
+}
+
+#Fcard2 h2{
+	color: #ffffff;
+	transform: translateX(-160px);
+}
+#Fcard3 .Fc-body {
+	background-color: #fcfcfc;
+}
+#Fcard4 .Fc-body {
+	background-color: #f57f7f;
+}
+
+.Fc-body {
+	box-sizing: border-box;
+	
+	border-radius: 50px;
+	box-shadow: 0 0 30px 0 rgba(0,0,0,0.3);
+	height: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.5s;
+}
+
+h2 {
+    font-size:70px;
+    text-align: center; /* Center align the text */
+    font-family: Arial, sans-serif; /* Choose a good font family */
+    margin: 0 auto; /* Center the element horizontally */
+    max-width: 800px; /* Limit the maximum width of the content */
+    line-height: 1.5; /* Set the line height for better readability */
+	font-family:monospace;
+}
+
+.Fc-body p{
+	transform: translateX(-300px);
+	font-size: 30px;
+	
+}
+
+#Fcard1 p{
+	color: #f04b4b;
+}
+
+#Fcard2 p{
+	color: aliceblue;
+}
+
+
+.featHead {
+	font-size: 3em;
+	text-decoration: underline;
+	position:absolute;
+	text-align:justify;
+	padding-top: 40px;
+}
+
+.c1-img{
+	transform: translate(100px,-800px);
+	transform: rotateX('60');
+}

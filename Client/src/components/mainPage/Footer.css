@@ -1,0 +1,76 @@
+.end{
+    background: linear-gradient(rgb(245, 111, 111),rgb(245, 29, 29));
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 500px;
+
+}
+
+.foot{
+    position: relative;
+    width: 100%;
+    background: rgb(233, 232, 232);
+    min-height: 100px;
+    padding: 20px 50px;
+}
+
+.foot .wave{
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background:url("../../assets/wave.png");
+    background-size: 1000px 100px;
+    
+}
+ #wave1
+{
+z-index: 1000;
+opacity: 1;
+bottom: 0;
+animation: animateWave 4s linear infinite;
+}
+
+ #wave2
+{
+z-index: 999;
+opacity: 0.5;
+bottom: 10px;
+animation: animateWave_2 4s linear infinite;
+}
+@keyframes animateWave_2
+{
+0% {
+    background-position-x: 0px;
+}
+100% {
+           background-position-x: 1000px;
+}
+}
+
+#wave3
+{
+z-index: 1000;
+opacity: 1;
+bottom: 0;
+animation: animatWave_3 4s linear infinite;
+}
+
+#wave4
+{
+z-index: 1000;
+opacity: 1;
+bottom: 0;
+animation: animatWave_4 4s linear infinite;
+}
+@keyframes animateWave
+{
+0% {
+    background-position-x: 1000px;
+}
+100% {
+           background-position-x: 0px;
+}
+}

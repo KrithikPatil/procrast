@@ -1,0 +1,16 @@
+.btn{
+    border: solid 2px black;
+    color: black;
+    background-color: aqua;
+    height: 30px;
+    width: 60px
+
+}
+
+.videoCapt{
+    border: solid 2px black;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    
+}
