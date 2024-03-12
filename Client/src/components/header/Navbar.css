@@ -1,6 +1,6 @@
 .navbar {
     background: rgb(235, 63, 92);
-    height: 80px;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,6 +42,7 @@
     color: white;
     text-decoration: none;
     padding: 0.5rem 1rem;
+    font-size: 30px;
   }
   
   .nav-links:hover {

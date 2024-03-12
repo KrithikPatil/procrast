@@ -7,13 +7,21 @@ import passport from 'passport';
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
  // Import should match the filename*/
 import Userdb from './model/userSchema.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const config = {
-    clientid: config.CLIENT_ID,
-    clientsecret: config.CLIENT_SECRET
+const accessEnv = {
+    clientid: process.env.CLIENT_ID,
+    clientsecret: process.env.CLIENT_SECRET
 }
 
 const app = express();
+const CONNECTION_URL = 'mongodb://localhost:27017/Procrasticide'
+const PORT = 5000
+
+mongoose.connect(CONNECTION_URL)
+    .then(() => app.listen(PORT, () => console.log('Database connected')))
+    .catch((error) => console.log(error.message));
 
 app.use(bodyParser.json({ limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));
@@ -24,12 +32,6 @@ app.use(cors(
         credentials: true
     }
 ));
-const CONNECTION_URL = 'mongodb+srv://Ayush:Ayush123@cluster0.mm5itwq.mongodb.net/Procrast'
-const PORT = 5000
-
-mongoose.connect(CONNECTION_URL)
-    .then(() => app.listen(PORT, () => console.log('Database connected')))
-    .catch((error) => console.log(error.message));
 
 app.use(express.json());
 
@@ -50,20 +52,46 @@ app.post('/user/insert', async (req, res) => {
         const check = await Userdb.findOne({ email: email });
         if (check) {
             console.log("User already exists");
-            return res.status(400).json({ message: "User already exists" });
+            return res.json({ message: "exists" });
         }
         
         // Insert the new user into the database
         await Userdb.create(data);
         
         console.log("User inserted successfully");
-        return res.status(201).json({ message: "User inserted successfully" });
+        return res.json({ message: "User inserted successfully" });
     }
     catch (error) {
         console.error("Error inserting user:", error);
-        return res.status(500).json({ message: "Internal server error" });
+        return res.json({ message: "Internal server error" });
     }
-})
+});
+
+app.post('/user/fetch', async (req, res) => {
+    const { email, password } = req.body;
+    const data = {
+        email: email,
+        password: password
+    }
+    try {
+        const check = await Userdb.findOne({ email: email });
+        if (check) {
+            if (check.password == password) {
+                return res.json({ message : check.displayName });
+            }
+            else {
+                return res.json({ message : "wrong password" });
+            }
+        }
+        else {
+            return res.json({ message : "no user" });
+        }
+    }
+    catch (error) {
+        console.error("Error fetching user:", error);
+        return res.json({ message: "Internal server error" });
+    }
+});
 
 
 
@@ -73,13 +101,15 @@ app.use(passport.session());
 passport.use(
     new GoogleStrategy(
         {
-            clientID: config.clientid,
-            clientSecret: config.clientsecret,
+            clientID: accessEnv.clientid,
+            clientSecret: accessEnv.clientsecret,
             callbackURL: "/auth/google/callback",
             scope: ["profile", "email"]
         },
         async (accessToken, refreshToken, profile, done) => {
             console.log("profile", profile)
+            displayName = profile.name.givenName;
+            email = profile.emails[0].value;
             try {
                 // Check if the user already exists in your database
                 let existingUser = await Userdb.findOne({ emailid: profile.email});
@@ -91,8 +121,9 @@ passport.use(
                     // If the user doesn't exist, create a new user
                     const newUser = new Userdb({
                         
-                        displayName: profile.displayName,
+                        displayName: profile.name.givenName,
                         email: profile.emails[0].value,
+                        password: ''
                         
                         // Add other relevant fields as needed
                     });
@@ -115,11 +146,19 @@ passport.deserializeUser((user, done) => {
 });
 
 app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
-app.get("/auth/google/callback", passport.authenticate("google", {
-    successRedirect: "http://localhost:3000/capture",
-    failureRedirect: "http://localhost:3000/signin"
-}));
- app.post("../")
+app.get("/auth/google/callback", passport.authenticate("google", { session: false }), (req, res) => {
+    // Extract user profile from request object
+    const userProfile = req.user;
+
+    // Send user profile data as JSON response to React frontend
+    res.json({ user: userProfile });
+});
+
+// app.get("/auth/google/callback", passport.authenticate("google", {
+//     successRedirect: "http://localhost:3000/capture",
+//     failureRedirect: "http://localhost:3000/signin"
+// }));
+// app.post("../")
 
 // app.listen(8000 ,() => {
 //     console.log('port connected');

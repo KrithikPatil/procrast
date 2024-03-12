@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Navbar.css';
-import Dropdown from './Dropdown';
-import Button from './Button';
+import '../header/Navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
-
-function Navbar() {
+function Tnavbar(items) {
     // const displayName = items.displayName;
     // const email = items.email;
     // console.log(displayName, email);
     const [click, setClick] = useState(false);
     const [dropdown, setDropdown] = useState(false);
+    const displayName = items.displayName;
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
+
+    const config = {
+        bucketName: 'sem6-test-images',
+        region: process.env.REACT_APP_REGION,
+        accessKeyId: process.env.REACT_APP_ACCESS,
+        secretAccessKey: process.env.REACT_APP_SECRET
+    }
+
+    const user_image = "https://" + config.bucketName + ".s3." + config.region + ".amazonaws.com/index/" + displayName + ".jpg" + `?${new Date().getTime()}`;
 
     const onMouseEnter = () => {
         if (window.innerWidth < 960) {
@@ -48,29 +55,35 @@ function Navbar() {
                             Home
                         </Link>
                     </li>
-                    <li className='nav-item'
-                        onMouseEnter={onMouseEnter}
-                        onMouseLeave={onMouseLeave}>
-                        <Link to='/services' className='nav-links' onClick={closeMobileMenu}>
-                            <i className='fas fa-caret-down' />
-                        </Link>
-                        {dropdown && <Dropdown />}
-                    </li>
                     <li className='nav-item'>
-                        <Link to='/contact-us' className='nav-links' onClick={closeMobileMenu}>
-                            Contact us
+                        <Link to='/todo' className='nav-links' onClick={closeMobileMenu}>
+                            Todo
+                        </Link>
+                    </li>
+
+                    <li className='nav-item'>
+                        <Link to='/canvas' className='nav-links' onClick={closeMobileMenu}>
+                            Canvas
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        < Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
-                            Sign Up
+                        <Link to='/calendar' className='nav-links' onClick={closeMobileMenu}>
+                            Calendar
                         </Link>
                     </li>
+                    <li className='nav-item'>
+                            {displayName}
+                    </li>
+                    
+                    <li className='nav-item' >
+                            <img id="uimg" src = {user_image} width = "100px" height = "100px"/>
+                    </li>
+
                 </ul>
-                <Button />
+                
             </nav >
         </>
     );
 }
 
-export default Navbar;
+export default Tnavbar;
