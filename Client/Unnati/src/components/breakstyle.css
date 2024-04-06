@@ -1,0 +1,234 @@
+body2{
+    background-image: url(C:\Users\pohan\OneDrive\Desktop\sem6project\pomo\src\images\profile2.png);
+    background-repeat: no-repeat;
+    background-size: 30px 30px ;
+    background-position: 1480px 15px;
+    background-color: rgb(248, 209, 157);   
+    
+    
+}
+
+
+.report{
+        top: 40px;
+        right:150px;
+        width: 100px;
+        height: 40px;
+        flex-shrink: 0;  
+        display:flex;
+        -webkit-box-align: center;
+        align-items: center; 
+        -webkit-box-pack: center;
+        justify-content: center; 
+        text-align: center;
+        border-radius: 20px;
+        cursor: pointer;
+        opacity: 0.9;
+        background: none rgb(255, 208, 0);
+        box-shadow: none;
+        margin-left: 5px;
+        font-size: 15px;
+        padding: 8px 8px;
+        min-width: 70px;
+        border: none;
+        color: black !important; 
+        border: solid 2px black;
+    }
+
+.button1{
+    
+        position: absolute;
+        right: 70px;
+        top: 10px;
+}
+
+.settings{
+    top: 40px;
+    right:150px;
+    width: 100px;
+    height: 40px;
+    flex-shrink: 0;  
+    display:flex;
+    -webkit-box-align: center;
+    align-items: center; 
+    -webkit-box-pack: center;
+    justify-content: center; 
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+    opacity: 0.9;
+    background: none rgb(255, 208, 0);
+    box-shadow: none;
+    margin-left: 5px;
+    font-size: 15px;
+    padding: 8px 8px;
+    min-width: 70px;
+    border: solid 2px black;
+    color: black !important; 
+}
+
+.button2{
+    
+    position: absolute;
+    right: 185px;
+    top: 10px;
+}
+
+.profile{
+    top: 40px;
+    right:150px;
+    width: 10px;
+    height: 40px;
+    flex-shrink: 0;  
+    display:flex;
+    -webkit-box-align: center;
+    align-items: center; 
+    -webkit-box-pack: center;
+    justify-content: center; 
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+    opacity: 0.9;
+    background: none rgb(255, 208, 15,0);
+    box-shadow: none;
+    margin-left: 5px;
+    font-size: 15px;
+    padding: 8px 8px;
+    min-width: 50px;
+    border: none;
+    color: black !important; 
+   
+}
+
+.button3{
+    position: absolute;
+    right: 20px;
+    top: 10px;     
+}
+
+.DC{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background-color: rgb(255, 239, 147);
+    border-radius: 10px;
+    border: solid 1px black;
+}
+
+.Timer2{
+    background-color: aliceblue;
+    padding: 30px;
+    margin-bottom: 25px;
+    font-size: 40px;
+    font-family: 'Times New Roman', Times, serif;
+    border: solid 3px black;
+    
+}
+.GroupTimer2{
+    position: absolute;
+    top: 250px;
+    left: 750px;
+    background-size: 300px 500px;
+    padding: 70px;
+    background-color: hwb(0 44% 1%);
+    border-radius: 20px;
+    border: solid 2px black;
+    transform: translate(-150px,-100px);
+}
+
+.minutes{
+    text-align: center;
+}
+/* .seconds{
+    text-align: ;
+} */
+
+.edit2{
+     
+    font-family:'Times New Roman', Times, serif;
+    font-size: 30px;   
+}
+
+.labeltimer2{
+    background-color: rgb(255, 211, 146);
+    border-radius: 10px;
+    height: 35px;
+    width: 100px;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:bold;
+}
+
+.StartTimer2{
+    position: absolute;
+    top: 250px;
+    left: 10px;
+    padding:10px ;
+
+}
+
+.startbutton2{
+    background-color: rgb(76, 255, 49);
+    border-radius: 10px;
+    height: 40px;
+    width: 75px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    font-weight:800;
+    padding: 5px;
+}
+
+.pause2{
+    position: absolute;
+    top: 250px;
+    left: 143px;
+    padding:10px ;    
+} 
+
+.pausebutton2{
+    background-color: rgb(255, 49, 49);
+    border-radius: 10px;
+    height: 40px;
+    width: 75px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    font-weight:800;
+    padding: 5px;
+}
+
+.reset2{
+    position: absolute;
+    top: 250px;
+    right: 10px;
+    padding:10px ;
+}
+
+.resetbutton2{
+    background-color: rgb(185, 185, 185);
+    border-radius: 10px;
+    height: 40px;
+    width: 75px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    font-weight:800;
+    padding: 5px;
+}
+
+
+/* .Break{
+    position: absolute;
+    top: 10px;
+    right: 140px;
+    padding:10px ;
+}
+
+.breakbutton{
+    background-color: rgb(185, 185, 185);
+    border-radius: 10px;
+    height: 40px;
+    width: 75px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    font-weight:800;
+    padding: 5px;
+} */
