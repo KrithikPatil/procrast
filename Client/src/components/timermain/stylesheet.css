@@ -1,10 +1,24 @@
-body{
-    /* background-image: url("../images/profile2.png"); */
+.body-cls{
+    background-image: url('../images/bg.jpg');
     background-repeat: no-repeat;
-    background-size: 30px 30px ;
-    background-position: 1480px 15px;
-    background-color: rgb(248, 209, 157);   
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed;
+     
     
+}
+
+.Gameboy{
+    background-size: 30px 20px;
+    margin-top: 0px;
+
+} 
+
+.girl{
+    position: absolute;
+    bottom: 30px; /* Adjust top position as needed */
+    left: 1000px; /* Adjust left position as needed */
+    background-size: cover;
     
 }
 
@@ -124,16 +138,16 @@ body{
     
 }
 .GroupTimer{
-    
     position: absolute;
     top: 250px;
     left: 750px;
     background-size: 300px 500px;
     padding: 70px;
-    background-color: hwb(0 44% 1%);
-    border-radius: 20px;
-    border: solid 2px black;
-    transform: translate(50px,100px);
+    background-color: hwb(0 24% 71%);
+    border-radius: 30px;
+    border: solid 5px black;
+    transform: translate(-190px,-220px);
+    
 }
 
 .edit{
@@ -156,12 +170,13 @@ body{
     position: absolute;
     top: 250px;
     left: 10px;
-    padding:10px ;
+    padding:7px ;
+    transform: translate(180px,283px);
 
 }
 
 .startbutton{
-    background-color: rgb(76, 255, 49);
+    background-color: rgb(0, 255, 106);
     border-radius: 10px;
     height: 40px;
     width: 75px;
@@ -176,6 +191,7 @@ body{
     top: 250px;
     left: 143px;
     padding:10px ;    
+    transform: translate(-33px,279px);
 } 
 
 .pausebutton{
@@ -194,6 +210,8 @@ body{
     top: 250px;
     right: 10px;
     padding:10px ;
+    transform: translate(-140px,340px);
+    
 }
 
 .resetbutton{
@@ -213,6 +231,8 @@ body{
     top: 10px;
     right: 140px;
     padding:10px ;
+    transform: translate(-10px,240px);
+
 }
 
 .breakbutton{
@@ -224,9 +244,4 @@ body{
     font-size: 15px;
     font-weight:800;
     padding: 5px;
-}
-
-.whole-timer{
-    justify-content: center;
-    text-align: center;
 }

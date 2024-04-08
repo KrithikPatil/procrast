@@ -20,7 +20,7 @@ const Signin = () => {
 						alert("Please create an account first");
 					}
 					else {
-						history("/timer", { state: { id: res.data.message, email: email } });
+						history("/Home", { state: { id: res.data.message, email: email } });
 					}
 				})
 				.catch(e => {

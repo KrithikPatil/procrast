@@ -144,7 +144,7 @@ function Webcam() {
                 mediaStream.getTracks().forEach(track => track.stop());
             }
 
-            history("/timer", { state: { id: displayName, email: email } });
+            history("/Home", { state: { id: displayName, email: email } });
         }
         else{
             alert("Please take a picture first");

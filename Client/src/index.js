@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Signin from './components/signin/Signin';
 import Webcam from './components/webcam/Webcam';
 import Signup from './components/signin/Signup';
+import App1 from './App1.js';
 import Timer from "./components/timermain/Timer.js";
 import Timerbreak from "./components/timermain/Timerbreak.js"
 import Todo from "./components/pages/Todo.js";
@@ -21,6 +22,7 @@ root.render(
 				<Route path="/signin" element={<Signin />} />
 				<Route path='/capture' element={<Webcam />} />
 				<Route path="/signup" element={<Signup />} />
+				<Route path="/Home" element={<App1 />} />
 				<Route path="/timer" element={<Timer />} />
 				<Route path="/timerbreak" element={<Timerbreak />} />
 				<Route path="/canvas" element={<Canvas />} />

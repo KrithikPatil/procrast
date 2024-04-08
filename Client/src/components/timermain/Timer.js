@@ -92,20 +92,15 @@
 
 // export default Timer;
 
-import React, { useState, useEffect } from 'react';                                 
-import { Link, useLocation } from 'react-router-dom';
-import './stylesheet.css'
-import Tnavbar from './Tnavbar'
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+// import './stylesheet.css';
 
 // Import the alarm sound file (replace with your own sound file)
-import alarmSound from './alarm.wav';
+import alarmSound from "./alarm.wav";
+import gameboy from '../images/gameboy.png';
 
 const Timer = () => {
-
-  const location = useLocation();
-  const email = location.state.email;
-  const displayName = location.state.id;
-  console.log(email, displayName);
   const [minutes, setMinutes] = useState(25);
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
@@ -174,35 +169,52 @@ const Timer = () => {
   };
 
   return (
-    <div className='whole-timer'>
-    <Tnavbar displayName = {displayName} />
-    <div className='GroupTimer'>
+    <body className="body-cls">
       
-      <div className='Timer'>
-        <span>{String(minutes).padStart(2, '0')}:</span>
-        <span>{String(seconds).padStart(2, '0')}</span>
+      <div className="girl">
+      <iframe src='https://my.spline.design/untitled-2a93085541c064e81f185cbb02eb20d2/' frameborder='0' width='700px' height='700px'></iframe>
       </div>
-      <div className='edit'>
-        <label>Set Timer : </label>
-        <input className='labeltimer' type="number" value={minutes} onChange={handleEdit} />
+      <div className="Gameboy">
+      <img src={gameboy} alt="Gameboy" />
       </div>
-      <div className='StartTimer'>
-        <button className="startbutton" onClick={handleStart}>START</button>
+      <div className="GroupTimer">
+        <div className="Timer">
+          <span>{String(minutes).padStart(2, "0")}:</span>
+          <span>{String(seconds).padStart(2, "0")}</span>
+        </div>
+        <div className="edit">
+          <label>Set Timer : </label>
+          <input
+            className="labeltimer"
+            type="number"
+            value={minutes}
+            onChange={handleEdit}
+          />
+        </div>
+        <div className="StartTimer">
+          <button className="startbutton" onClick={handleStart}>
+            START
+          </button>
+        </div>
+        <div className="pause">
+          <button className="pausebutton" onClick={handlePause}>
+            PAUSE
+          </button>
+        </div>
+        <div className="reset">
+          <button className="resetbutton" onClick={handleReset}>
+            RESET
+          </button>
+        </div>
+        <div className="Break">
+          {/* 'to' attribute should point to the correct route for the next timer */}
+          <Link to="/timerbreak">
+            <button className="breakbutton">BREAK</button>
+          </Link>
+        </div>
       </div>
-      <div className='pause'>
-        <button className='pausebutton' onClick={handlePause}>PAUSE</button>
-      </div>
-      <div className='reset'>
-        <button className='resetbutton' onClick={handleReset}>RESET</button>
-      </div>
-      <div className='Break'>
-        {/* 'to' attribute should point to the correct route for the next timer */}
-        <Link to='/timerbreak'>
-          <button className="breakbutton">BREAK</button>
-        </Link>
-      </div>
-    </div>
-    </div>
+      
+    </body>
   );
 };
 
