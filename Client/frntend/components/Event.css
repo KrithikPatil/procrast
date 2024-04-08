@@ -1,0 +1,40 @@
+/* Modal Container */
+.react-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  /* Modal Form */
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Form Input Fields */
+  .modal-form input,
+  .modal-form label {
+    margin-bottom: 10px;
+  }
+  
+  /* Submit Button */
+  .modal-form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Submit Button Hover */
+  .modal-form button:hover {
+    background-color: #0056b3;
+  }
+  
