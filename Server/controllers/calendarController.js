@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const moment = require('moment');
-const Event = require('../models/Event');
+const Event = require('../model/Event');
 
 // router.post('/create-event', async(req, res) => {
 //     try {

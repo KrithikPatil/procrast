@@ -16,6 +16,7 @@
 
 .girl{
     position: absolute;
+    top: 100px;
     bottom: 30px; /* Adjust top position as needed */
     left: 1000px; /* Adjust left position as needed */
     background-size: cover;
@@ -139,7 +140,7 @@
 }
 .GroupTimer{
     position: absolute;
-    top: 250px;
+    top: 400px;
     left: 750px;
     background-size: 300px 500px;
     padding: 70px;

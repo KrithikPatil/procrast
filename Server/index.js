@@ -8,6 +8,8 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20";
  // Import should match the filename*/
 import Userdb from './model/userSchema.js';
 import dotenv from 'dotenv';
+import Event from './model/Event.js';
+import moment from 'moment';
 dotenv.config();
 
 const accessEnv = {
@@ -16,7 +18,7 @@ const accessEnv = {
 }
 
 const app = express();
-const CONNECTION_URL = 'mongodb://localhost:27017/Procrasticide'
+const CONNECTION_URL = 'mongodb+srv://Ayush:Ayush123@cluster0.mm5itwq.mongodb.net/Procrast'
 const PORT = 5000
 
 mongoose.connect(CONNECTION_URL)
@@ -25,13 +27,14 @@ mongoose.connect(CONNECTION_URL)
 
 app.use(bodyParser.json({ limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));
-app.use(cors(
-    {
-        origin: 'http://localhost:3000',
-        methods: 'GET,POST,PUT,DELETE',
-        credentials: true
-    }
-));
+// app.use(cors(
+//     {
+//         origin: 'http://localhost:3000',
+//         methods: 'GET,POST,PUT,DELETE',
+//         credentials: true
+//     }
+// ));
+app.use(cors());
 
 app.use(express.json());
 
@@ -93,7 +96,116 @@ app.post('/user/fetch', async (req, res) => {
     }
 });
 
+app.post('/create-event', async(req, res) => {
+    try {
+        const email = req.query.email;
+        // console.log(email);
+        const eventData = {email: email, ...req.body, completed: false, todo: true};
+        const event = new Event(eventData); 
+        await event.save();
+        res.sendStatus(201);
+    } catch (error) {
+        console.error('Error creating event:', error);
+        res.status(500).json({ message: 'Failed to create event' });
+    }
+});
 
+app.post('/get-event', async(req, res) => {
+    const { email } = req.body;
+    try {
+        // const events = await Event.find({
+        //     start: { $gte: moment(req.query.start).toDate() },
+        //     end: { $lte: moment(req.query.end).toDate() }
+        // });
+        const events = await Event.find({ email: email });
+        // const events = await Event.find();
+        res.send(events);
+    } catch (error) {
+        console.error('Error fetching events:', error);
+        res.status(500).json({ message: 'Failed to fetch events' });
+    }
+});
+
+app.post('/fetchTasks', async(req, res) => {
+    const { email } = req.body;
+    try {
+        const events = await Event.find({
+            $and: [
+                { email: email },
+                { start: { $lte: new Date() } },
+                { end: { $gte: new Date() } }
+            ]
+        })
+        res.send(events);
+    }
+    catch (e) {
+        console.log(e);
+    }
+});
+
+app.post("/addTask", async (req, res) => {
+    const { email, title } = req.body;
+    const currentDate = new Date();
+    
+    currentDate.setHours(0, 0, 0, 0);
+    
+    const nextDay = new Date(currentDate);
+    nextDay.setDate(nextDay.getDate() + 1);
+    const data = {
+        email: email,
+        start: new Date(),
+        end: nextDay,
+        title: title,
+        completed: false,
+        todo: true
+    }
+    try {
+        await Event.create(data);
+        res.send("success");
+    }
+    catch (e) {
+        console.log("There was error inserting the task through todo");
+        console.log(e);
+    }
+});
+
+app.post("/markDone", async (req, res) => {
+    const { email, i } = req.body;
+    console.log(email, i);
+    try {
+        const result = await Event.updateOne(
+            { email: email, title: i },
+            { $set: { completed: true, todo: false } }
+        );
+        if (result.nModified === 1) {
+            res.send("success");
+        } else {
+            res.send("No matching document found to update");
+        }
+    }
+    catch (e) {
+        console.log(e);
+    }
+});
+
+app.post("/markUndone", async (req, res) => {
+    const { email, i } = req.body;
+    console.log(email, i);
+    try {
+        const result = await Event.updateOne(
+            { email: email, title: i },
+            { $set: { completed: false, todo: true } }
+        );
+        if (result.nModified === 1) {
+            res.send("success");
+        } else {
+            res.send("No matching document found to update");
+        }
+    }
+    catch (e) {
+        console.log(e);
+    }
+});
 
 app.use(passport.initialize());
 app.use(passport.session());

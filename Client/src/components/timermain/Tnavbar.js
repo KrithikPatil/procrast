@@ -10,6 +10,8 @@ function Tnavbar(items) {
     const [click, setClick] = useState(false);
     const [dropdown, setDropdown] = useState(false);
     const displayName = items.displayName;
+    const email = items.email;
+    console.log(displayName, email);
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
@@ -56,7 +58,7 @@ function Tnavbar(items) {
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/todo' className='nav-links' onClick={closeMobileMenu}>
+                        <Link to={`/todo?email=${email}`} className='nav-links' onClick={closeMobileMenu}>
                             Todo
                         </Link>
                     </li>
@@ -67,7 +69,7 @@ function Tnavbar(items) {
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/calendar' className='nav-links' onClick={closeMobileMenu}>
+                        <Link to={`/calendar?email=${email}`} className='nav-links' onClick={closeMobileMenu}>
                             Calendar
                         </Link>
                     </li>
