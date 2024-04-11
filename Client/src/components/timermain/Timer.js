@@ -93,7 +93,7 @@
 // export default Timer;
 
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import './stylesheet.css';
 
 // Import the alarm sound file (replace with your own sound file)
@@ -109,6 +109,7 @@ const Timer = (items) => {
 	const videoRef = useRef(null);
 	const name = items.displayName;
 	const email = items.email;
+	const history = useNavigate();
 
 	const [mediaStream, setMediaStream] = useState(null);
 
@@ -327,6 +328,7 @@ const Timer = (items) => {
 			setMediaStream(null);
 		}
 		setIsActive(false);
+		history("/dashboard", { state: { id: name, email: email }});
 	}
 
 	const handleEdit = (event) => {
@@ -382,11 +384,9 @@ const Timer = (items) => {
 					<button className="resetbutton" onClick={handleReset}>
 						RESET
 					</button>
-					<Link to='/dashboard'>
 					<button className="resetbutton" onClick={handleStop}>
 						STOP
 					</button>
-					</Link>
 					
 				</div>
 				<div className="Break">

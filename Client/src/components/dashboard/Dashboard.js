@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 import './Dashboard.css';
 import Tnavbar from '../timermain/Tnavbar';
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 const Dashboard = () => {
     const [completedToday, setCompletedToday] = useState(0);
@@ -12,10 +14,15 @@ const Dashboard = () => {
     const barChartRef = useRef(null);
     const lineChartRef = useRef(null);
 
+    const location = useLocation();
+    const displayName = location.state.id;
+    const email = location.state.email;
+
     useEffect(() => {
-        fetch('http://localhost:8000/get-event')
-            .then(response => response.json())
-            .then(data => {
+        axios.post('http://localhost:5000/get-event', { email })
+            // .then(response => response.json())
+            .then(response => {
+                const data = response.data;
                 const today = new Date();
                 const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
                 const todayEnd = new Date(todayStart);
@@ -106,7 +113,7 @@ const Dashboard = () => {
 
     return (
         <div>
-        <Tnavbar />
+        <Tnavbar email = {email} displayName = {displayName} />
         <div className='dash'>
             <div className='pie-chart'>
                 <canvas ref={pieChartRef} width="400" height="400"></canvas>
