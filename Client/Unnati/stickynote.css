@@ -1,0 +1,91 @@
+.sticky-notes-container {
+  position: absolute;
+  bottom: 4rem; /* Adjust this value to control the vertical position from the bottom */
+  left: 21rem; /* Adjust this value to control the horizontal position from the left */
+}
+
+.sticky-note {
+  background-color: #ffff43;
+  border: 1px solid #ffdd00;
+  border-radius: 5px;
+  padding: 15px;
+  width: 300px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.sticky-note:nth-child(even) {
+  top: 5px; /* Adjust this value to control the vertical spacing between notes */
+  left: 5px; /* Adjust this value to control the horizontal spacing between notes */
+}
+
+.sticky-note:nth-child(odd) {
+  top: 0px;
+  left: 0px;
+}
+
+.sticky-note textarea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 16px;
+}
+
+.sticky-note ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+  counter-reset: item;
+}
+
+.sticky-note li {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.sticky-note li span {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.sticky-note li span::before {
+  content: counter(item) ". ";
+  counter-increment: item;
+}
+
+.sticky-note li input[type="text"] {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 16px;
+}
+
+.sticky-note button {
+  margin-top: 10px;
+}
+
+.bull {
+  font-weight: bold;
+  border-radius: 4px;
+  background-color: rgb(241, 202, 202);
+}
+
+.note {
+  width: 75px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: rgb(255, 165, 20);
+  position: relative;
+  bottom: 3rem; /* Adjust this value to control the vertical position from the bottom */
+  left: 6rem;
+
+}
+
+.delete{
+  transform: translate(9rem,-1rem);
+}
