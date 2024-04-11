@@ -14,7 +14,7 @@ function App1() {
       <Tnavbar email = {email} displayName = {name}/>
       {/* <Landing /> */}
       <DigitalClock />
-      <Timer />
+      <Timer email = {email} displayName = {name} />
 
     </div>
   );

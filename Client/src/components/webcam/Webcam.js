@@ -8,44 +8,27 @@ function Webcam() {
 
     const history = useNavigate();
 
-    const location = useLocation();
+    // const location = useLocation();
     const videoRef = useRef(null);
     const canvasRef = useRef(null);
     const [capturedFrame, setCapturedFrame] = useState(null);
-    let mediaStream = null;
-    const email = location.state.email;
-    const displayName = location.state.id;
+    const [mediaStream, setMediaStream] = useState(null);
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const email = searchParams.get("email");
+    const displayName = searchParams.get("displayName");
+    console.log("email: " + email + " displayName: " + displayName);
 
     useEffect(() => {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({ video: true })
                 .then(stream => {
-                    mediaStream = stream;
+                    setMediaStream(stream);
                     videoRef.current.srcObject = stream;
                 })
                 .catch(error => console.error('getUserMedia error:', error));
         }
     }, []);
-
-    // useEffect(() => {
-    //     try {
-    //         axios.post("http://localhost:8000/test/check/fetchName", {
-    //             email
-    //         })
-    //         .then(res => {
-    //             if (res.data == "not found") {
-    //                 console.log("user not found");
-    //             }
-    //             else {
-    //                 console.log("Name received: " + res.data[0].name);
-    //                 setName(res.data[0].name);
-    //             }
-    //         })
-    //     }
-    //     catch(e) {
-    //         console.log(e);
-    //     }
-    // }, [email]);
 
     const config = {
         bucketName: 'sem6-test-images',
@@ -55,14 +38,6 @@ function Webcam() {
     }
 
     const CaptureImage = async () => {
-        // const capture = document.getElementById('captured_image');
-        // console.log(email);
-        // fetch(`http://localhost:5000/capture_image/${name}`)
-        //     .then((response) => response.json())
-        //     .then((data) => {
-        //         console.log(data.message);
-        //         capture.src = "https://" + config.bucketName + ".s3." + config.region + ".amazonaws.com/index/" + name + ".jpg" + `?${new Date().getTime()}`;
-        //     })
         const video = videoRef.current;
         const canvas = canvasRef.current;
 
@@ -77,44 +52,12 @@ function Webcam() {
     }
 
     const Retake = async () => {
-        // const capture = document.getElementById('captured_image');
-        // AWS.config.update({
-        //     accessKeyId: config.accessKeyId,
-        //     secretAccessKey: config.secretAccessKey,
-        // });
-        // const s3 = new AWS.S3({
-        //     params: { Bucket: config.bucketName },
-        //     region: config.region,
-        // });
-        // const params = {
-        //     Bucket: config.bucketName,
-        //     Key: "index/" + name + ".jpg",
-        // };
-        // s3.deleteObject(params, (err, data) => {
-        //     if (err) {
-        //         console.log(err);
-        //     }
-        //     else {
-        //         capture.src = '';
-        //         window.location.reload();
-        //     }
-        // })
         setCapturedFrame(null);
     }
 
     const startTest = async () => {
 
-        // const capture = document.getElementById('captured_image');
-
         if (capturedFrame) {
-
-            // const res = axios.post('http://localhost:8000/test/kill')
-            // if (res.data == "killed") {
-            //     history("/test/startTest", { state: { id: email, test_name: test_name } })
-            // }
-            // else if (res.data == "error") {
-            //     alert("The snake is alive");
-            // }
             AWS.config.update({
                 accessKeyId: config.accessKeyId,
                 secretAccessKey: config.secretAccessKey,
@@ -141,7 +84,27 @@ function Webcam() {
             }
 
             if (mediaStream) {
-                mediaStream.getTracks().forEach(track => track.stop());
+                // mediaStream.getTracks().forEach(track => track.stop());
+                mediaStream.getTracks().forEach(track => {
+                    try {
+                        track.stop();
+                        console.log("ended");
+    
+                        // Check if the track is already ended
+                        if (track.readyState === 'ended') {
+                            console.log('Webcam has stopped (track was already ended)');
+                        } else {
+                            // Attach onended event handler
+                            track.onended = () => {
+                                console.log('Webcam has stopped');
+                            };
+                        }
+                    } catch (error) {
+                        console.log('Error stopping track:', error);
+                    }
+                });
+    
+                setMediaStream(null);
             }
 
             history("/Home", { state: { id: displayName, email: email } });

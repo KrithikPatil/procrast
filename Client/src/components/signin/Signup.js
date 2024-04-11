@@ -25,7 +25,7 @@ const Signup = () => {
                     alert("User already exists");
                 }
                 else {
-                    history("/capture", { state: { id: displayName, email: email } });
+                    history(`/capture?email=${email}&displayName=${displayName}`);
                 }
             } catch (error) {
                 // Handle request failure

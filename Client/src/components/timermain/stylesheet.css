@@ -209,9 +209,10 @@
 .reset{
     position: absolute;
     top: 250px;
-    right: 10px;
+    left: 143px;
+    /* right: 10px; */
     padding:10px ;
-    transform: translate(-140px,340px);
+    transform: translate(-33px,340px);
     
 }
 

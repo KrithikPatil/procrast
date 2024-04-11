@@ -210,12 +210,15 @@ app.post("/markUndone", async (req, res) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
+let displayName;
+let email;
+
 passport.use(
     new GoogleStrategy(
         {
             clientID: accessEnv.clientid,
             clientSecret: accessEnv.clientsecret,
-            callbackURL: "/auth/google/callback",
+            callbackURL: "http://localhost:5000/auth/google/callback",
             scope: ["profile", "email"]
         },
         async (accessToken, refreshToken, profile, done) => {
@@ -266,10 +269,10 @@ app.get("/auth/google/callback", passport.authenticate("google", { session: fals
     res.json({ user: userProfile });
 });
 
-// app.get("/auth/google/callback", passport.authenticate("google", {
-//     successRedirect: "http://localhost:3000/capture",
-//     failureRedirect: "http://localhost:3000/signin"
-// }));
+app.get("/auth/google/callback", passport.authenticate("google", {
+    successRedirect: `http://localhost:3000/capture?email=${email}&displayName=${displayName}`,
+    failureRedirect: "http://localhost:3000/signin"
+}));
 // app.post("../")
 
 // app.listen(8000 ,() => {

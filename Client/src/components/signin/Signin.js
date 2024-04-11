@@ -34,7 +34,7 @@ const Signin = () => {
 	};
 
 	const loginwithgoogle = () => {
-		fetch("http://localhost:5000/auth/google")
+		fetch("http://localhost:5000/auth/google/callback")
 			.then(response => response.json())
 			.then(data => {
 				if (data.user) {
