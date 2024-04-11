@@ -1,0 +1,13 @@
+.dash {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pie-chart,
+.bar-graph,
+.line-chart {
+    width: 400px;
+    height: 400px;
+    margin: 10px;
+}

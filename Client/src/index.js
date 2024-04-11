@@ -12,6 +12,7 @@ import Timerbreak from "./components/timermain/Timerbreak.js"
 import Todo from "./components/pages/Todo.js";
 import Canvas from "./components/pages/Canvas.js";
 import Calendar from "./components/pages/Calendar.js"
+import Dashboard from "./components/dashboard/Dashboard.js"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,6 +29,7 @@ root.render(
 				<Route path="/canvas" element={<Canvas />} />
 				<Route path="/calendar" element={<Calendar />} />
 				<Route path="/todo" element={<Todo />} />
+				<Route path="/dashboard" element={<Dashboard />} />
 			</Routes>
 		</Router>
 

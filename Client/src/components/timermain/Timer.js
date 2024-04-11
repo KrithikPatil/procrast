@@ -382,9 +382,12 @@ const Timer = (items) => {
 					<button className="resetbutton" onClick={handleReset}>
 						RESET
 					</button>
+					<Link to='/dashboard'>
 					<button className="resetbutton" onClick={handleStop}>
 						STOP
 					</button>
+					</Link>
+					
 				</div>
 				<div className="Break">
 					{/* 'to' attribute should point to the correct route for the next timer */}
