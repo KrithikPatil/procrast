@@ -1,104 +1,13 @@
-// import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
-
-// const Timer = () => {
-//   const [minutes, setMinutes] = useState(25);
-//   const [seconds, setSeconds] = useState(0);
-//   const [isActive, setIsActive] = useState(false);
-
-//   useEffect(() => {
-//     let interval;
-
-//     if (isActive) {
-//       interval = setInterval(() => {
-//         if (seconds === 0) {
-//           if (minutes === 0) {
-//             clearInterval(interval);
-//             setIsActive(false);
-
-//             // Automatically start another timer (e.g., break time)
-//             setMinutes(5); // Set break time to 5 minutes (adjust as needed)
-//             setSeconds(0);
-//             setTimeout(() => {
-//               setIsActive(true);
-//             }, 1000);
-//           } else {
-//             setMinutes(minutes - 1);
-//             setSeconds(59);
-//           }
-//         } else {
-//           setSeconds(seconds - 1);
-//         }
-//       }, 1000);
-//     } else {
-//       clearInterval(interval);
-//     }
-
-//     return () => clearInterval(interval);
-//   }, [isActive, minutes, seconds]);
-
-//   const handleStart = () => {
-//     setIsActive(true);
-//   };
-
-//   const handlePause = () => {
-//     setIsActive(false);
-//   };
-
-//   const handleReset = () => {
-//     setIsActive(false);
-//     setMinutes(25);
-//     setSeconds(0);
-//   };
-
-//   const handleEdit = (event) => {
-//     const value = event.target.value;
-//     const numericValue = parseInt(value, 10);
-
-//     if (!isNaN(numericValue) && numericValue >= 0) {
-//       setMinutes(numericValue);
-//       setSeconds(0);
-//     }
-//   };
-
-//   return (
-//     <div className='GroupTimer'>
-//       <div className='Timer'>
-//         <span>{String(minutes).padStart(2, '0')}:</span>
-//         <span>{String(seconds).padStart(2, '0')}</span>
-//       </div>
-//       <div className='edit'>
-//         <label>Set Timer : </label>
-//         <input className='labeltimer' type="number" value={minutes} onChange={handleEdit} />
-//       </div>
-//       <div className='StartTimer'>
-//         <button className="startbutton" onClick={handleStart}>START</button>
-//       </div>
-//       <div className='pause'>
-//         <button className='pausebutton' onClick={handlePause}>PAUSE</button>
-//       </div>
-//       <div className='reset'>
-//         <button className='resetbutton' onClick={handleReset}>RESET</button>
-//       </div>
-//       <div className='Break'>
-//         {/* 'to' attribute should point to the correct route for the next timer */}
-//         <Link to='/timerbreak'>
-//           <button className="breakbutton">BREAK</button>
-//         </Link>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Timer;
-
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import './stylesheet.css';
+import './stylesheet.css';
+import StickyNote from "./stickynote";
 
 // Import the alarm sound file (replace with your own sound file)
 import alarmSound from "./alarm.wav";
-import gameboy from '../images/gameboy.png';
+// import gameboy from '../images/gameboy.png';
+import productivityflip2 from "../images/productivityflip2.gif";
+import mainbg from "../images/mainbg.jpeg";
 import { ImageCapture } from 'image-capture';
 import AWS from 'aws-sdk';
 
@@ -129,42 +38,42 @@ const Timer = (items) => {
 			if (mediaStream) { // Add a conditional check here
 				const videoTrack = mediaStream.getVideoTracks()[0];
 				const imageCapture = new ImageCapture(videoTrack);
-	
+
 				const imageBitmap = await imageCapture.grabFrame();
-	
+
 				const canvas = document.createElement('canvas');
 				canvas.width = imageBitmap.width;
 				canvas.height = imageBitmap.height;
 				const ctx = canvas.getContext('2d');
 				ctx.drawImage(imageBitmap, 0, 0);
-	
+
 				// Convert canvas content to Blob
 				const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
-	
+
 				// Read Blob as ArrayBuffer
 				const arrayBuffer = await blob.arrayBuffer();
-	
+
 				// Convert ArrayBuffer to Uint8Array
 				const uint8Array = new Uint8Array(arrayBuffer);
-	
+
 				AWS.config.update({
 					accessKeyId: config.accessKeyId,
 					secretAccessKey: config.secretAccessKey,
 					region: config.region,
 				});
-	
+
 				const rekognition = new AWS.Rekognition();
 				const dynamodb = new AWS.DynamoDB();
-	
+
 				const rekognitionResponse = await rekognition.searchFacesByImage({
 					CollectionId: 'famouspersons',
 					Image: { Bytes: uint8Array },
 				}).promise();
-	
+
 				// Process Rekognition response here
 				if (rekognitionResponse.FaceMatches.length > 0) {
 					const faceId = rekognitionResponse.FaceMatches[0].Face.FaceId;
-	
+
 					// Query DynamoDB to get information about the recognized face
 					const dynamodbResponse = await dynamodb.getItem({
 						TableName: 'facerecognition',
@@ -172,7 +81,7 @@ const Timer = (items) => {
 					}).promise();
 
 					console.log(dynamodbResponse);
-	
+
 					if (dynamodbResponse.Item) {
 						const fullName = dynamodbResponse.Item.FullName.S;
 						console.log(fullName);
@@ -216,7 +125,7 @@ const Timer = (items) => {
 				captureFrameAsJPEG();
 			}
 		}, 3000);
-	
+
 		return () => clearInterval(interval);
 	}, [isActive, mediaStream]);
 
@@ -328,7 +237,7 @@ const Timer = (items) => {
 			setMediaStream(null);
 		}
 		setIsActive(false);
-		history("/dashboard", { state: { id: name, email: email }});
+		history("/dashboard", { state: { id: name, email: email } });
 	}
 
 	const handleEdit = (event) => {
@@ -347,54 +256,88 @@ const Timer = (items) => {
 	};
 
 	return (
-		<body className="body-cls">
+		<body>
 			{/* <video ref={videoRef} autoPlay></video> */}
 
-			<div className="girl">
-				<iframe src='https://my.spline.design/untitled-2a93085541c064e81f185cbb02eb20d2/' frameborder='0' width='700px' height='700px'></iframe>
-			</div>
-			<div className="Gameboy">
-				<img src={gameboy} alt="Gameboy" />
-			</div>
-			<div className="GroupTimer">
-				<div className="Timer">
-					<span>{String(minutes).padStart(2, "0")}:</span>
-					<span>{String(seconds).padStart(2, "0")}</span>
+			<div className="rectangle"></div>
+			<div className="maincomp">
+
+
+				<div className="tplft">
+					<div className="gif">
+						<img src={productivityflip2} alt="Animated GIF" className="prodgif" />
+					</div>
 				</div>
-				<div className="edit">
-					<label>Set Timer : </label>
-					<input
-						className="labeltimer"
-						type="number"
-						value={minutes}
-						onChange={handleEdit}
-					/>
+
+				<div className="btmrt">
+					<div className="girl">
+						<iframe
+							src="https://my.spline.design/untitled-2a93085541c064e81f185cbb02eb20d2/"
+							frameborder="0"
+							width="700px"
+							height="700px"
+						></iframe>
+					</div>
 				</div>
-				<div className="StartTimer">
-					<button className="startbutton" onClick={handleStart}>
-						START
-					</button>
+				<div className="tprt">
+					<div className="GroupTimer">
+						<div className="break_div">
+							<div className="Break">
+								<Link to="/timerbreak">
+									<button className="breakbutton">BREAK</button>
+								</Link>
+							</div>
+						</div>
+						{/* Timer component */}
+						<div className="Timer">
+							<span>{String(minutes).padStart(2, "0")}:</span>
+							<span>{String(seconds).padStart(2, "0")}</span>
+						</div>
+						{/* Edit timer input */}
+						<div className="edit">
+							<label>Set Timer : </label>
+							<input
+								className="labeltimer"
+								type="number"
+								value={minutes}
+								onChange={handleEdit}
+							/>
+						</div>
+						{/* Timer control buttons */}
+						<div className="cluster-btn">
+							<div className="StartTimer">
+								<button className="startbutton" onClick={handleStart}>
+									START
+								</button>
+							</div>
+							<div className="pause">
+								<button className="pausebutton" onClick={handlePause}>
+									PAUSE
+								</button>
+							</div>
+							<div className="reset">
+								<button className="resetbutton" onClick={handleReset}>
+									RESET
+								</button>
+								<button className="resetbutton" onClick={handleStop}>
+									STOP
+								</button>
+							</div>
+						</div>
+						{/* Break button */}
+						{/* <div className="Break">
+							<Link to="/timerbreak">
+								<button className="breakbutton">BREAK</button>
+							</Link>
+						</div> */}
+					</div>
 				</div>
-				<div className="pause">
-					<button className="pausebutton" onClick={handlePause}>
-						PAUSE
-					</button>
+				<div className="overall">
+					<div className="bk">
+						<img src={mainbg} alt="Description of the image" />
+					</div>
 				</div>
-				<div className="reset">
-					<button className="resetbutton" onClick={handleReset}>
-						RESET
-					</button>
-					<button className="resetbutton" onClick={handleStop}>
-						STOP
-					</button>
-					
-				</div>
-				<div className="Break">
-					{/* 'to' attribute should point to the correct route for the next timer */}
-					<Link to="/timerbreak">
-						<button className="breakbutton">BREAK</button>
-					</Link>
-				</div>
+				<StickyNote />
 			</div>
 
 		</body>

@@ -74,11 +74,13 @@ function Tnavbar(items) {
                         </Link>
                     </li>
                     <li className='nav-item'>
+                        <div className='nav-links'>
                             {displayName}
+                        </div>
                     </li>
                     
                     <li className='nav-item' >
-                            <img id="uimg" src = {user_image} width = "100px" height = "100px"/>
+                            <img id="uimg" src = {user_image} width = "80px" height = "80px"/>
                     </li>
 
                 </ul>

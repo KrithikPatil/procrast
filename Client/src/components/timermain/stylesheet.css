@@ -1,249 +1,318 @@
-.body-cls{
-    background-image: url('../images/bg.jpg');
-    background-repeat: no-repeat;
-    background-size: cover; 
-    background-position: center;
-    background-attachment: fixed;
-     
-    
-}
-
-.Gameboy{
-    background-size: 30px 20px;
-    margin-top: 0px;
-
-} 
-
-.girl{
-    position: absolute;
-    top: 100px;
-    bottom: 30px; /* Adjust top position as needed */
-    left: 1000px; /* Adjust left position as needed */
-    background-size: cover;
-    
-}
-
-
-.report{
-        top: 40px;
-        right:150px;
-        width: 100px;
-        height: 40px;
-        flex-shrink: 0;  
-        display:flex;
-        -webkit-box-align: center;
-        align-items: center; 
-        -webkit-box-pack: center;
-        justify-content: center; 
-        text-align: center;
-        border-radius: 20px;
-        cursor: pointer;
-        opacity: 0.9;
-        background: none rgb(255, 208, 0);
-        box-shadow: none;
-        margin-left: 5px;
-        font-size: 15px;
-        padding: 8px 8px;
-        min-width: 70px;
-        color: black !important; 
-        border: solid 2px black;
-    }
-
-.button1{
-    
-        position: absolute;
-        right: 70px;
-        top: 10px;
-}
-
-.settings{
-    top: 40px;
-    right:150px;
-    width: 100px;
-    height: 40px;
-    flex-shrink: 0;  
-    display:flex;
-    -webkit-box-align: center;
-    align-items: center; 
-    -webkit-box-pack: center;
-    justify-content: center; 
-    text-align: center;
-    border-radius: 20px;
-    cursor: pointer;
-    opacity: 0.9;
-    background: none rgb(255, 208, 0);
-    box-shadow: none;
-    margin-left: 5px;
-    font-size: 15px;
-    padding: 8px 8px;
-    min-width: 70px;
-    border: solid 2px black;
-    color: black !important; 
-}
-
-.button2{
-    
-    position: absolute;
-    right: 185px;
-    top: 10px;
-}
-
-.profile{
-    top: 40px;
-    right:150px;
-    width: 10px;
-    height: 40px;
-    flex-shrink: 0;  
-    display:flex;
-    -webkit-box-align: center;
-    align-items: center; 
-    -webkit-box-pack: center;
-    justify-content: center; 
-    text-align: center;
-    border-radius: 20px;
-    cursor: pointer;
-    opacity: 0.9;
-    background: none rgb(255, 208, 15,0);
-    box-shadow: none;
-    margin-left: 5px;
-    font-size: 15px;
-    padding: 8px 8px;
-    min-width: 50px;
-    border: none;
-    color: black !important; 
-   
-}
-
-.button3{
-    position: absolute;
-    right: 20px;
-    top: 10px;     
-}
-
-.DC{
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    background-color: rgb(255, 239, 147);
-    border-radius: 10px;
-    border: solid 1px black;
-}
-
-.Timer{
-    background-color: aliceblue;
-    padding: 30px;
-    margin-bottom: 25px;
-    font-size: 40px;
-    font-family: 'Times New Roman', Times, serif;
-    border: solid 3px black;
-    
-}
-.GroupTimer{
-    position: absolute;
-    top: 400px;
-    left: 750px;
-    background-size: 300px 500px;
-    padding: 70px;
-    background-color: hwb(0 24% 71%);
-    border-radius: 30px;
-    border: solid 5px black;
-    transform: translate(-190px,-220px);
-    
-}
-
-.edit{
-     
-    font-family:'Times New Roman', Times, serif;
-    font-size: 30px;   
-}
-
-.labeltimer{
-    background-color: rgb(255, 211, 146);
-    border-radius: 10px;
-    height: 35px;
-    width: 100px;
-    font-size: 30px;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight:bold;
-}
-
-.StartTimer{
-    position: absolute;
-    top: 250px;
-    left: 10px;
-    padding:7px ;
-    transform: translate(180px,283px);
+body {
+	/* background: linear-gradient(to right, #ffffff, #ffffff, #ffffff); /* Adjust colors as needed */
+	/* margin-left: 4rem; /* Adjust margin to create space from left side */
+	/* margin-right: 4rem; Adjust margin to create space from right side   */
 
 }
 
-.startbutton{
-    background-color: rgb(0, 255, 106);
-    border-radius: 10px;
-    height: 40px;
-    width: 75px;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 15px;
-    font-weight:800;
-    padding: 5px;
-}
-
-.pause{
-    position: absolute;
-    top: 250px;
-    left: 143px;
-    padding:10px ;    
-    transform: translate(-33px,279px);
-} 
-
-.pausebutton{
-    background-color: rgb(255, 49, 49);
-    border-radius: 10px;
-    height: 40px;
-    width: 75px;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 15px;
-    font-weight:800;
-    padding: 5px;
-}
-
-.reset{
-    position: absolute;
-    top: 250px;
-    left: 143px;
-    /* right: 10px; */
-    padding:10px ;
-    transform: translate(-33px,340px);
-    
-}
-
-.resetbutton{
-    background-color: rgb(185, 185, 185);
-    border-radius: 10px;
-    height: 40px;
-    width: 75px;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 15px;
-    font-weight:800;
-    padding: 5px;
-}
-
-
-.Break{
-    position: absolute;
-    top: 10px;
-    right: 140px;
-    padding:10px ;
-    transform: translate(-10px,240px);
+.maincomp {
+	background: linear-gradient(to right, #6dff5a, #9efffd, #ffd1d1);
+	/* z-index: ; */
 
 }
 
-.breakbutton{
-    background-color: rgb(185, 185, 185);
-    border-radius: 10px;
-    height: 40px;
-    width: 75px;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 15px;
-    font-weight:800;
-    padding: 5px;
+.rectangle {
+	position: absolute;
+	top: 6rem;
+	transform: translate(0rem, 3.5rem);
+	left: 12rem;
+	width: 75%;
+	height: 80%;
+	background-color: rgba(33, 120, 58, 0.1);
+	/* Adjust opacity as needed */
+	/* z-index: ; */
+	border-radius: 10px;
+	border: 1px solid black;
 }
+
+.tplft {
+	transform: translate(3rem, -1rem);
+}
+
+.prodgif {
+	position: relative;
+	/* Position the image absolutely within the container */
+	top: 100px;
+	/* Position the top edge of the image at the vertical center of the container */
+	left: 90px;
+	/* Position the left edge of the image at the horizontal center of the container */
+	transform: translate(-400px, 50px);
+	/* Adjust the position of the image to center it exactly */
+	width: 350px;
+	/* Set the width of the image */
+	height: auto;
+	/* Maintain the aspect ratio */
+	border: 2px solid #ffb5b5;
+	border-radius: 20px;
+
+}
+
+.girl {
+	position: absolute;
+	top: 8rem;
+	/* Adjust top position as needed */
+	left: 70rem;
+	/* Adjust left position as needed */
+	background-size: cover;
+
+}
+
+
+.report {
+	top: 40px;
+	right: 150px;
+	width: 100px;
+	height: 40px;
+	flex-shrink: 0;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	text-align: center;
+	border-radius: 20px;
+	cursor: pointer;
+	opacity: 0.9;
+	background: none rgb(255, 208, 0);
+	box-shadow: none;
+	margin-left: 5px;
+	font-size: 15px;
+	padding: 8px 8px;
+	min-width: 70px;
+	color: black !important;
+	border: solid 2px black;
+}
+
+.button1 {
+
+	position: absolute;
+	right: 70px;
+	top: 10px;
+}
+
+.settings {
+	top: 40px;
+	right: 150px;
+	width: 100px;
+	height: 40px;
+	flex-shrink: 0;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	text-align: center;
+	border-radius: 20px;
+	cursor: pointer;
+	opacity: 0.9;
+	background: none rgb(255, 208, 0);
+	box-shadow: none;
+	margin-left: 5px;
+	font-size: 15px;
+	padding: 8px 8px;
+	min-width: 70px;
+	border: solid 2px black;
+	color: black !important;
+}
+
+.button2 {
+
+	position: absolute;
+	right: 185px;
+	top: 10px;
+}
+
+.profile {
+	top: 40px;
+	right: 150px;
+	width: 10px;
+	height: 40px;
+	flex-shrink: 0;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	text-align: center;
+	border-radius: 20px;
+	cursor: pointer;
+	opacity: 0.9;
+	background: none rgb(255, 208, 15, 0);
+	box-shadow: none;
+	margin-left: 5px;
+	font-size: 15px;
+	padding: 8px 8px;
+	min-width: 50px;
+	border: none;
+	color: black !important;
+
+}
+
+.button3 {
+	position: absolute;
+	right: 20px;
+	top: 10px;
+}
+
+.DC {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	background-color: rgb(255, 239, 147);
+	border-radius: 10px;
+	border: solid 1px black;
+}
+
+
+.tprt {
+	transform: translate(-5rem, -16rem);
+}
+
+.Timer {
+	background-color: aliceblue;
+	padding: 30px;
+	margin-bottom: 25px;
+	font-size: 40px;
+	font-family: 'Times New Roman', Times, serif;
+	border: solid 3px black;
+
+}
+
+.GroupTimer {
+	position: absolute;
+	top: 200px;
+	left: 750px;
+	width: 35%;
+	padding: 90px;
+	padding-top: 0px;
+	background-color: hwb(0 46% 0%);
+	border-radius: 30px;
+	border: solid 5px black;
+	transform: translate(4rem, -5rem);
+
+}
+
+.edit {
+
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 30px;
+}
+
+.labeltimer {
+	background-color: rgb(255, 211, 146);
+	border-radius: 10px;
+	height: 35px;
+	width: 100px;
+	font-size: 30px;
+	font-family: 'Times New Roman', Times, serif;
+	font-weight: bold;
+}
+
+.StartTimer {
+	position: absolute;
+	top: 250px;
+	left: 10px;
+	padding: 7px;
+	transform: translate(0rem, 15rem);
+
+}
+
+.startbutton {
+	background-color: rgb(0, 255, 106);
+	border-radius: 10px;
+	height: 40px;
+	width: 75px;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 15px;
+	font-weight: 800;
+	padding: 5px;
+}
+
+.pause {
+	position: absolute;
+	top: 250px;
+	left: 143px;
+	padding: 10px;
+	transform: translate(-3rem, 14.8rem);
+}
+
+.pausebutton {
+	background-color: rgb(255, 49, 49);
+	border-radius: 10px;
+	height: 40px;
+	width: 75px;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 15px;
+	font-weight: 800;
+	padding: 5px;
+}
+
+.reset {
+	position: absolute;
+	display: flex;
+	flex-direction: row;
+	top: 250px;
+	left: 143px;
+	/* right: 10px; */
+	padding: 10px;
+	transform: translate(4rem, 14.8rem);
+
+}
+
+.resetbutton {
+	background-color: rgb(185, 185, 185);
+	border-radius: 10px;
+	height: 40px;
+	width: 75px;
+	margin-right: 10px;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 15px;
+	font-weight: 800;
+	padding: 5px;
+}
+
+.break_div {
+	position: relative;
+	justify-content: center;
+}
+
+.Break {
+	/* position: absolute; */
+	top: 10px;
+	right: 140px;
+	padding: 10px;
+	/* transform: translate(1rem, 0rem); */
+
+}
+
+.breakbutton {
+	background-color: rgb(242, 255, 0);
+	border-radius: 10px;
+	height: 40px;
+	width: 75px;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 15px;
+	font-weight: 800;
+	padding: 5px;
+}
+
+.cluster-btn {
+	transform: translate(-1em, -30rem);
+}
+
+.bg-col {
+	background-color: aqua;
+}
+
+.overall {
+	transform: translate(2rem, -13rem);
+	position: relative;
+	/* Ensure positioning context */
+	z-index: -1;
+
+
+}
+
+/* .bk{
+
+} */

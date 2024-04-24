@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './breakstyle.css';
-
+import breaktime from "../images/breaktime.jpg";
 
 const Timerbreak = () => {
   const [minutes, setMinutes] = useState(5); // Initial timer value in minutes
@@ -33,7 +33,7 @@ const Timerbreak = () => {
 
   const handleStart = () => {
     setIsActive(true);
-  };
+  };  
 
   const handlePause = () => {
     setIsActive(false);
@@ -57,6 +57,9 @@ const Timerbreak = () => {
 
   return (
   <body className='body2'>
+    <div className="brkimg">
+            <img src={breaktime}/>
+          </div>
     <div className='GroupTimer2'>
       <div className='Timer2'>
         <span className='minutes'>{String(minutes).padStart(2, '0')}:</span>
